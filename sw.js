@@ -1,7 +1,7 @@
 /* Signal Fox Hub — app-shell service worker.
    Pages network-first (updates appear on next load when online);
    assets cache-first. Everything falls back to cache offline. */
-var CACHE = 'signalfox-hub-v1';
+var CACHE = 'signalfox-hub-v2';
 var ASSETS = [
   './',
   './index.html',

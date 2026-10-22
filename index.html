@@ -114,14 +114,15 @@
     <span class="go">›</span>
   </button>
 
-  <div class="appcard soon gold-edge">
+  <button class="appcard gold-edge" onclick="openApp('tails')">
     <span class="ic">📖</span>
     <span class="tx">
       <span class="nm">SignalFox Tails</span>
       <span class="ds" style="display:block">Storytelling, the Signal Fox way.</span>
-      <span class="st"><span class="dot grey"></span><span>In the works</span></span>
+      <span class="st"><span class="dot"></span><span>Live — tap to open</span></span>
     </span>
-  </div>
+    <span class="go">›</span>
+  </button>
 
   <div class="appcard soon">
     <span class="ic">🎧</span>
@@ -162,7 +163,8 @@
 <script>
 var APPS = {
   shift: { title: 'SignalFox Shift', url: 'https://signalfoxsa.github.io/signalfox-shift/', stop: false },
-  test:  { title: 'Torture Test',     url: 'https://signalfoxsa.github.io/signalfox-shift/stress-test/', stop: true }
+  test:  { title: 'Torture Test',     url: 'https://signalfoxsa.github.io/signalfox-shift/stress-test/', stop: true },
+  tails: { title: 'SignalFox Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false }
 };
 var cur = null;
 
