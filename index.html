@@ -124,6 +124,16 @@
     <span class="go">›</span>
   </button>
 
+  <button class="appcard red-edge" onclick="openApp('hospital')">
+    <span class="ic">🏥</span>
+    <span class="tx">
+      <span class="nm">Hospital Finder</span>
+      <span class="ds" style="display:block">Medical aid + option + area in, hospitals you can go to, out — by area or nearby you.</span>
+      <span class="st"><span class="dot"></span><span>Live — tap to open</span></span>
+    </span>
+    <span class="go">›</span>
+  </button>
+
   <div class="appcard soon">
     <span class="ic">🎧</span>
     <span class="tx">
@@ -164,7 +174,8 @@
 var APPS = {
   shift: { title: 'SignalFox Shift', url: 'https://signalfoxsa.github.io/signalfox-shift/', stop: false },
   test:  { title: 'Torture Test',     url: 'https://signalfoxsa.github.io/signalfox-shift/stress-test/', stop: true },
-  tails: { title: 'SignalFox Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false }
+  tails: { title: 'SignalFox Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false },
+  hospital: { title: 'Hospital Finder', url: 'https://signalfoxsa.github.io/signalfox-hospital-finder/', stop: false }
 };
 var cur = null;
 
