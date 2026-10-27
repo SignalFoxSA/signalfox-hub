@@ -12,7 +12,7 @@
 <style>
   :root{
     --bg:#050507; --card:#121218; --card2:#17171f; --line:#26262f;
-    --gold:#FFC13E; --blue:#45A5FF; --violet:#8B5CF6; --red:#FF5252;
+    --gold:#FFC13E; --blue:#45A5FF; --violet:#8B5CF6; --red:#FF5252; --green:#1DB872;
     --tx:#F2F2F5; --dim:#9A9AA5;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
@@ -51,6 +51,21 @@
   .violet-edge{box-shadow:inset 3px 0 0 var(--violet);}
   .red-edge{box-shadow:inset 3px 0 0 var(--red);}
   .gold-edge{box-shadow:inset 3px 0 0 var(--gold);}
+  .green-edge{box-shadow:inset 3px 0 0 var(--green);}
+
+  /* ---------- Settings (same pattern as Hospital Finder) ---------- */
+  .settingsbtn{position:fixed; right:16px; bottom:16px; z-index:40; width:52px; height:52px;
+    border-radius:50%; border:1px solid var(--line); background:var(--card); color:var(--tx);
+    font-size:24px; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,.5);}
+  .settingspanel{position:fixed; right:16px; bottom:80px; z-index:40; width:calc(100% - 32px); max-width:360px;
+    background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px 16px;
+    box-shadow:0 10px 34px rgba(0,0,0,.6);}
+  .settingspanel h2{margin:0 0 12px; font-size:19px;}
+  .settingspanel .srow{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px;}
+  .settingspanel .srow span{font-size:15px; font-weight:700;}
+  .settingspanel .snote{color:var(--dim); font-size:13px; line-height:1.4; margin:8px 0 0;}
+  .settingspanel .closebtn{margin-top:16px; background:var(--card2); color:var(--tx); border:1px solid var(--line);
+    border-radius:999px; padding:10px 18px; font-size:14px; font-weight:700; cursor:pointer;}
 
   /* ---------- Test Centre ---------- */
   #testcentre{position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:60; overflow-y:auto;}
@@ -117,7 +132,7 @@
 </div>
 
 <main>
-  <button class="appcard red-edge" onclick="openTestCentre()">
+  <button class="appcard gold-edge" onclick="openTestCentre()">
     <span class="ic">🧪</span>
     <span class="tx">
       <span class="nm">Testing</span>
@@ -127,7 +142,7 @@
     <span class="go">›</span>
   </button>
 
-  <button class="appcard violet-edge" onclick="openApp('shift')">
+  <button class="appcard red-edge" onclick="openApp('shift')">
     <span class="ic">🦊</span>
     <span class="tx">
       <span class="nm">SignalFox Shift</span>
@@ -136,12 +151,8 @@
     </span>
     <span class="go">›</span>
   </button>
-  <div style="margin:-6px 4px 14px;">
-    <button class="checkbtn" id="shiftCheck" onclick="checkShiftBuild(event)">Check for updates</button>
-    <span id="shiftChecked" style="color:var(--dim); font-size:12px; margin-left:8px;"></span>
-  </div>
 
-  <button class="appcard gold-edge" onclick="openApp('tails')">
+  <button class="appcard violet-edge" onclick="openApp('tails')">
     <span class="ic">📖</span>
     <span class="tx">
       <span class="nm">SignalFox Tails</span>
@@ -151,11 +162,11 @@
     <span class="go">›</span>
   </button>
 
-  <button class="appcard red-edge" onclick="openApp('hospital')">
+  <button class="appcard green-edge" onclick="openApp('hospital')">
     <span class="ic">🏥</span>
     <span class="tx">
-      <span class="nm">Hospital Finder</span>
-      <span class="ds" style="display:block">Medical aid + option + area in, hospitals you can go to, out — by area or nearby you.</span>
+      <span class="nm">CoverCheck</span>
+      <span class="ds" style="display:block">Know before you go — medical aid + option + area in, hospitals you can go to, out — by area or nearby you.</span>
       <span class="st"><span class="dot"></span><span>Live — tap to open</span></span>
     </span>
     <span class="go">›</span>
@@ -176,6 +187,16 @@
   <div style="margin-top:5px;">New apps land here as they’re built.</div>
 </footer>
 
+<!-- ---------- Settings (cog, bottom-right; update button lives here now) ---------- -->
+<button class="settingsbtn" id="hubSettingsBtn" onclick="toggleHubSettings()" aria-label="Open settings">⚙</button>
+<div class="settingspanel" id="hubSettingsPanel" style="display:none" role="dialog" aria-label="Settings">
+  <h2>Settings</h2>
+  <p class="snote">Updates live here now, not in the middle of the screen.</p>
+  <div class="srow"><span>Check for updates</span><button class="checkbtn" id="shiftCheck" onclick="checkShiftBuild(event)">Check for updates</button></div>
+  <p class="snote" id="shiftChecked"></p>
+  <button class="closebtn" onclick="closeHubSettings()">Close</button>
+</div>
+
 <!-- ---------- Testing ---------- -->
 <div id="testcentre">
   <div id="tcbar">
@@ -195,7 +216,7 @@
     </button>
     <button class="pickbtn" id="pick-hospital" onclick="selectTestApp('hospital')">
       <span class="ic">🏥</span>
-      <span><span class="nm" style="display:block">Hospital Finder</span><span class="ds" style="display:block">Medical aid hospital finder.</span></span>
+      <span><span class="nm" style="display:block">CoverCheck</span><span class="ds" style="display:block">Know before you go — medical aid hospital finder.</span></span>
     </button>
     <button class="pickbtn soon">
       <span class="ic">🎧</span>
@@ -203,7 +224,7 @@
     </button>
     <div id="tcpanel">
       <div class="pnm" id="tcpName">Pick an app above</div>
-      <div class="pds" id="tcpDesc">Choose Shift, Tails or Hospital Finder. It opens straight into that app's testing window.</div>
+      <div class="pds" id="tcpDesc">Choose Shift, Tails or CoverCheck. It opens straight into that app's testing window.</div>
       <div id="tcpActions" style="display:none">
         <button class="bigbtn red" onclick="openTestDashboard()">🧪 Open testing window</button>
         <p class="pds" style="margin-top:12px;">In the testing window, at the top, you pick Functional or Torture, press Start, and the results show underneath. The red STOP button kills a test instantly. Demo links are coming next — that is the next step after Testing.</p>
@@ -237,7 +258,7 @@
 var APPS = {
   shift: { title: 'SignalFox Shift', url: 'https://signalfoxsa.github.io/signalfox-shift/', stop: false },
   tails: { title: 'SignalFox Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false },
-  hospital: { title: 'Hospital Finder', url: 'https://signalfoxsa.github.io/signalfox-hospital-finder/', stop: false }
+  hospital: { title: 'CoverCheck', url: 'https://signalfoxsa.github.io/signalfox-hospital-finder/', stop: false }
 };
 var cur = null;
 
@@ -245,8 +266,18 @@ function openApp(key){
   var a = APPS[key]; if (!a) return;
   openViewer(a.title, a.url, a.stop);
 }
+/* Settings: cog at the bottom-right, update button at the bottom of the panel,
+   exactly like Hospital Finder. */
+function toggleHubSettings(){
+  var p = document.getElementById('hubSettingsPanel');
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'block' : 'none';
+}
+function closeHubSettings(){
+  document.getElementById('hubSettingsPanel').style.display = 'none';
+}
 /* Open any page in the hub viewer (apps, or a test dashboard in a chosen mode). */
 function openViewer(title, url, stop){
+  closeHubSettings();
   cur = { title: title, url: url, stop: !!stop };
   var v = document.getElementById('viewer');
   document.getElementById('vtitle').textContent = title;
@@ -304,11 +335,12 @@ var TESTAPPS = {
     desc: 'Opens the Shift testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' },
   tails: { name: 'SignalFox Tails', key: 'tails',
     desc: 'Opens the Tails testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' },
-  hospital: { name: 'Hospital Finder', key: 'hospital',
-    desc: 'Opens the Hospital Finder testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' }
+  hospital: { name: 'CoverCheck', key: 'hospital',
+    desc: 'Opens the CoverCheck testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' }
 };
 var testApp = null;
 function openTestCentre(){
+  closeHubSettings();
   document.getElementById('testcentre').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -337,7 +369,7 @@ function openTestDashboard(){
     return;
   }
   if (key === 'hospital') {
-    openViewer('Testing — Hospital Finder', 'https://signalfoxsa.github.io/signalfox-hospital-finder/test/', true);
+    openViewer('Testing — CoverCheck', 'https://signalfoxsa.github.io/signalfox-hospital-finder/test/', true);
     return;
   }
 }
