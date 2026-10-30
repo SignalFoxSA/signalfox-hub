@@ -37,7 +37,8 @@
     padding:18px 16px; margin:0 0 14px; cursor:pointer; color:var(--tx); font:inherit;}
   .appcard:active{background:var(--card2);}
   .appcard .ic{width:54px; height:54px; border-radius:14px; flex:none; display:grid; place-items:center;
-    font-size:26px; background:#0b0b10; border:1px solid var(--line);}
+    font-size:26px; background:#0b0b10; border:1px solid var(--line); overflow:hidden;}
+  .appcard .ic img{width:100%; height:100%; object-fit:cover; display:block;}
   .appcard .tx{flex:1; min-width:0;}
   .appcard .nm{font-size:19px; font-weight:800; letter-spacing:.2px;}
   .appcard .ds{color:var(--dim); font-size:13.5px; margin-top:3px; line-height:1.35;}
@@ -82,6 +83,7 @@
     padding:15px 16px; margin:0 0 10px; cursor:pointer; color:var(--tx); font:inherit;}
   .pickbtn.sel{border-color:var(--gold); background:var(--card2);}
   .pickbtn .ic{font-size:24px; flex:none;}
+  .pickbtn .ic img{width:36px; height:36px; border-radius:9px; object-fit:cover; display:block;}
   .pickbtn .nm{font-size:17px; font-weight:800;}
   .pickbtn .ds{color:var(--dim); font-size:13px; margin-top:2px; line-height:1.35;}
   .pickbtn.soon{opacity:.55; cursor:default;}
@@ -125,7 +127,7 @@
 <body>
 
 <div class="brandwrap">
-  <img src="icon-512.png" alt="Signal Fox">
+  <img src="logo-signalfox.jpg" alt="SignalFox">
   <div class="wordmark"><span class="s">SIGNAL</span><span class="f">FOX</span></div>
   <div class="slogan">Cunningly simple software</div>
   <div class="hubsub">Your apps, in one place. Tap one to open it here.</div>
@@ -143,27 +145,27 @@
   </button>
 
   <button class="appcard red-edge" onclick="openApp('shift')">
-    <span class="ic">🦊</span>
+    <span class="ic"><img src="logo-shiftlock.jpg" alt="ShiftLock"></span>
     <span class="tx">
-      <span class="nm">SignalFox Shift</span>
-      <span class="ds" style="display:block">Complicated rotations without complicated spreadsheets.</span>
+      <span class="nm">ShiftLock</span>
+      <span class="ds" style="display:block">Make shifts happen.</span>
       <span class="st"><span class="dot"></span><span id="shiftBuild">Live — tap to open</span></span>
     </span>
     <span class="go">›</span>
   </button>
 
   <button class="appcard violet-edge" onclick="openApp('tails')">
-    <span class="ic">📖</span>
+    <span class="ic"><img src="logo-tails.jpg" alt="Tails"></span>
     <span class="tx">
-      <span class="nm">SignalFox Tails</span>
-      <span class="ds" style="display:block">Storytelling, the Signal Fox way.</span>
+      <span class="nm">Tails</span>
+      <span class="ds" style="display:block">A new story every night.</span>
       <span class="st"><span class="dot"></span><span>Live — tap to open</span></span>
     </span>
     <span class="go">›</span>
   </button>
 
   <button class="appcard green-edge" onclick="openApp('hospital')">
-    <span class="ic">🏥</span>
+    <span class="ic"><img src="logo-covercheck.jpg" alt="CoverCheck"></span>
     <span class="tx">
       <span class="nm">CoverCheck</span>
       <span class="ds" style="display:block">Know before you go — medical aid + option + area in, hospitals you can go to, out — by area or nearby you.</span>
@@ -207,15 +209,15 @@
     <p class="hint">All your apps together. Pick one and it takes you straight into its testing window. At the top of that window you choose the test: Functional, which goes through and checks everything works, or Torture, which builds it up, pushes it hard, and gives you results. The red STOP button kills a test instantly.</p>
     <h3>Pick an app to test</h3>
     <button class="pickbtn" id="pick-shift" onclick="selectTestApp('shift')">
-      <span class="ic">🦊</span>
-      <span><span class="nm" style="display:block">SignalFox Shift</span><span class="ds" style="display:block">Rosters, rotations, company view.</span></span>
+      <span class="ic"><img src="logo-shiftlock.jpg" alt="ShiftLock"></span>
+      <span><span class="nm" style="display:block">ShiftLock</span><span class="ds" style="display:block">Rosters, rotations, company view.</span></span>
     </button>
     <button class="pickbtn" id="pick-tails" onclick="selectTestApp('tails')">
-      <span class="ic">📖</span>
-      <span><span class="nm" style="display:block">SignalFox Tails</span><span class="ds" style="display:block">Storytelling app.</span></span>
+      <span class="ic"><img src="logo-tails.jpg" alt="Tails"></span>
+      <span><span class="nm" style="display:block">Tails</span><span class="ds" style="display:block">Storytelling app.</span></span>
     </button>
     <button class="pickbtn" id="pick-hospital" onclick="selectTestApp('hospital')">
-      <span class="ic">🏥</span>
+      <span class="ic"><img src="logo-covercheck.jpg" alt="CoverCheck"></span>
       <span><span class="nm" style="display:block">CoverCheck</span><span class="ds" style="display:block">Know before you go — medical aid hospital finder.</span></span>
     </button>
     <button class="pickbtn soon">
@@ -256,8 +258,8 @@
 
 <script>
 var APPS = {
-  shift: { title: 'SignalFox Shift', url: 'https://signalfoxsa.github.io/signalfox-shift/', stop: false },
-  tails: { title: 'SignalFox Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false },
+  shift: { title: 'ShiftLock', url: 'https://signalfoxsa.github.io/signalfox-shift/', stop: false },
+  tails: { title: 'Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false },
   hospital: { title: 'CoverCheck', url: 'https://signalfoxsa.github.io/signalfox-hospital-finder/', stop: false }
 };
 var cur = null;
@@ -293,7 +295,7 @@ function openViewer(title, url, stop){
    The dashboard reads ?mode= from its address; without it, it opens on Torture. */
 function openDashboard(mode){
   var m = mode === 'func' ? 'func' : 'torture';
-  openViewer('Testing — SignalFox Shift', 'https://signalfoxsa.github.io/signalfox-shift/stress-test/?mode=' + m, true);
+  openViewer('Testing — ShiftLock', 'https://signalfoxsa.github.io/signalfox-shift/stress-test/?mode=' + m, true);
 }
 function mountFrame(url){
   killFrame();
@@ -331,9 +333,9 @@ function reopenCurrent(){
 
 /* ---------- Testing: all apps together, pick one, open its testing window ---------- */
 var TESTAPPS = {
-  shift: { name: 'SignalFox Shift', key: 'shift',
-    desc: 'Opens the Shift testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' },
-  tails: { name: 'SignalFox Tails', key: 'tails',
+  shift: { name: 'ShiftLock', key: 'shift',
+    desc: 'Opens the ShiftLock testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' },
+  tails: { name: 'Tails', key: 'tails',
     desc: 'Opens the Tails testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' },
   hospital: { name: 'CoverCheck', key: 'hospital',
     desc: 'Opens the CoverCheck testing window. At the top you pick Functional or Torture, press Start, and the results show underneath.' }
@@ -365,7 +367,7 @@ function openTestDashboard(){
   closeTestCentre();
   if (key === 'shift') { openDashboard('torture'); return; }
   if (key === 'tails') {
-    openViewer('Testing — SignalFox Tails', 'https://signalfoxsa.github.io/signalfox-tails/test/', true);
+    openViewer('Testing — Tails', 'https://signalfoxsa.github.io/signalfox-tails/test/', true);
     return;
   }
   if (key === 'hospital') {

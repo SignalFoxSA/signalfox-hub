@@ -1,13 +1,17 @@
 /* Signal Fox Hub — app-shell service worker.
    Pages network-first (updates appear on next load when online);
    assets cache-first. Everything falls back to cache offline. */
-var CACHE = 'signalfox-hub-v5';
+var CACHE = 'signalfox-hub-v6';
 var ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './logo-signalfox.jpg',
+  './logo-shiftlock.jpg',
+  './logo-covercheck.jpg',
+  './logo-tails.jpg'
 ];
 self.addEventListener('install', function (e) {
   e.waitUntil(
