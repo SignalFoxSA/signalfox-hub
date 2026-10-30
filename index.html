@@ -258,9 +258,9 @@
 
 <script>
 var APPS = {
-  shift: { title: 'ShiftLock', url: 'https://signalfoxsa.github.io/signalfox-shift/', stop: false },
-  tails: { title: 'Tails', url: 'https://signalfoxsa.github.io/signalfox-tails/', stop: false },
-  hospital: { title: 'CoverCheck', url: 'https://signalfoxsa.github.io/signalfox-hospital-finder/', stop: false }
+  shift: { title: 'ShiftLock', url: 'https://shift-45l.pages.dev/', stop: false },
+  tails: { title: 'Tails', url: 'https://signalfox-tails.pages.dev/', stop: false },
+  hospital: { title: 'CoverCheck', url: 'https://covercheck-8cy.pages.dev/', stop: false }
 };
 var cur = null;
 
@@ -295,7 +295,7 @@ function openViewer(title, url, stop){
    The dashboard reads ?mode= from its address; without it, it opens on Torture. */
 function openDashboard(mode){
   var m = mode === 'func' ? 'func' : 'torture';
-  openViewer('Testing — ShiftLock', 'https://signalfoxsa.github.io/signalfox-shift/stress-test/?mode=' + m, true);
+  openViewer('Testing — ShiftLock', 'https://shift-45l.pages.dev/stress-test/?mode=' + m, true);
 }
 function mountFrame(url){
   killFrame();
@@ -367,11 +367,11 @@ function openTestDashboard(){
   closeTestCentre();
   if (key === 'shift') { openDashboard('torture'); return; }
   if (key === 'tails') {
-    openViewer('Testing — Tails', 'https://signalfoxsa.github.io/signalfox-tails/test/', true);
+    openViewer('Testing — Tails', 'https://signalfox-tails.pages.dev/test/', true);
     return;
   }
   if (key === 'hospital') {
-    openViewer('Testing — CoverCheck', 'https://signalfoxsa.github.io/signalfox-hospital-finder/test/', true);
+    openViewer('Testing — CoverCheck', 'https://covercheck-8cy.pages.dev/test/', true);
     return;
   }
 }
@@ -385,7 +385,7 @@ async function checkShiftBuild(ev){
   var st = document.getElementById('shiftBuild');
   btn.disabled = true; btn.textContent = 'Checking…';
   try {
-    var r = await fetch('https://signalfoxsa.github.io/signalfox-shift/', { cache: 'no-store' });
+    var r = await fetch('https://shift-45l.pages.dev/', { cache: 'no-store' });
     var t = await r.text();
     var m = t.match(/BUILD='([^']+)'/);
     var b = m ? m[1] : 'unknown';
